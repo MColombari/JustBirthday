@@ -2,25 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RecyclerviewRowMainLayout"
-    android:layout_width="match_parent"
+    android:id="@+id/MainLayoutRVRConstraintLayout"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/NameRVRow"
+        android:id="@+id/NikNameRVRTextView"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="Caricamento..."
+        android:text="Loading..."
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/DateRVRow"
+        android:id="@+id/DateRVRTextView"
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginEnd="20dp"
@@ -31,12 +31,95 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/IconRVRow"
+        android:id="@+id/IconRVRImageView"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/DateRVRow"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/DateRVRTextView"
+        app:layout_constraintStart_toEndOf="@+id/NikNameRVRTextView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_icon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/MoreDetailConstraintLayoutRVR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NikNameRVRTextView">
+
+        <TextView
+            android:id="@+id/CommentsRVRTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Comments:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/BirthdayRVRTextView"
+            app:layout_constraintTop_toBottomOf="@+id/BirthdayRVRTextView" />
+
+        <Button
+            android:id="@+id/ChangeInformationRVRButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Change information"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/DeleteRVRButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CommentsRVRTextView" />
+
+        <Button
+            android:id="@+id/DeleteRVRButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Delete"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/ChangeInformationRVRButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ChangeInformationRVRButton"
+            app:layout_constraintTop_toTopOf="@+id/ChangeInformationRVRButton" />
+
+        <TextView
+            android:id="@+id/NameRVRTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:text="Name:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/SurnameRVRTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Surname:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/NameRVRTextView"
+            app:layout_constraintTop_toBottomOf="@+id/NameRVRTextView" />
+
+        <TextView
+            android:id="@+id/BirthdayRVRTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Next birthday age:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/SurnameRVRTextView"
+            app:layout_constraintTop_toBottomOf="@+id/SurnameRVRTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
