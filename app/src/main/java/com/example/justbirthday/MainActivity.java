@@ -10,6 +10,9 @@ import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import localDatabase.DatabaseManagerImplementation;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView friendsRecyclerView;
@@ -25,13 +28,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        singleRowRecycleViewArrayList = new ArrayList<>();
-        singleRowRecycleViewArrayList.add(new SingleRowRecycleView("Mela", "Sinisa", "Melarosa", new Date(2000, 2,12), "Porco D**", 0));
-
         friendsRecyclerView = (RecyclerView) findViewById(R.id.FriendsRecyclerView);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(singleRowRecycleViewArrayList);
-        friendsRecyclerView.setAdapter(recyclerViewAdapter);
-        /* I need to use LinearLayout because doesn't exits any Manager for ConstraintLayout. */
-        friendsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        HomeInitializer homeInitializer = new HomeInitializer(new DatabaseManagerImplementation(getApplicationContext()), friendsRecyclerView, getApplicationContext());
+        Thread thread = new Thread(homeInitializer);
+        thread.start();
     }
 }

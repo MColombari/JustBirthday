@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
@@ -35,8 +37,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.getNikNameRVRTextView().setText(singleRowRecycleView.getNikName());
         holder.getNameRVRTextView().setText(singleRowRecycleView.getName());
         holder.getSurnameRVRTextView().setText(singleRowRecycleView.getSurname());
-        holder.getDateRVRTextView().setText(singleRowRecycleView.getBirthdayDate().toString());
-        holder.getBirthdayRVRTextView().setText(singleRowRecycleView.getBirthdayDate().toString());
+
+        Date currentDate = new Date();
+        Date currentDateParsed = new Date(0, currentDate.getMonth(), currentDate.getDate());
+        Date birthdayDateParsed = new Date(0, singleRowRecycleView.getBirthdayDate().getMonth(), singleRowRecycleView.getBirthdayDate().getDate());
+        long millisDiff = currentDateParsed.getTime() - birthdayDateParsed.getTime();
+        int dayDiff = (int) TimeUnit.DAYS.convert(millisDiff, TimeUnit.MILLISECONDS);
+        holder.getDateRVRTextView().setText(Integer.toString(dayDiff));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(singleRowRecycleView.getBirthdayDate().getYear());
+        stringBuilder.append("/");
+        stringBuilder.append(singleRowRecycleView.getBirthdayDate().getMonth());
+        stringBuilder.append("/");
+        stringBuilder.append(singleRowRecycleView.getBirthdayDate().getDate());
+        holder.getBirthdayRVRTextView().setText(stringBuilder.toString());
+
         holder.getCommentsRVRTextView().setText(singleRowRecycleView.getComments());
 
         boolean isExpanded = singleRowRecycleView.isExpanded();
