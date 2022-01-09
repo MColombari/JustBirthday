@@ -3,6 +3,7 @@ package com.example.justbirthday;
 import java.util.Date;
 
 public class SingleRowRecycleView implements Comparable<SingleRowRecycleView> {
+    private int id;
     private String nikName;
     private String name;
     private String surname;
@@ -12,7 +13,8 @@ public class SingleRowRecycleView implements Comparable<SingleRowRecycleView> {
 
     private boolean expanded;
 
-    public SingleRowRecycleView(String nikName, String name, String surname, Date birthdayDate, String comments, int sourceType) {
+    public SingleRowRecycleView(int id, String nikName, String name, String surname, Date birthdayDate, String comments, int sourceType) {
+        this.id = id;
         this.nikName = nikName;
         this.name = name;
         this.surname = surname;
@@ -21,6 +23,8 @@ public class SingleRowRecycleView implements Comparable<SingleRowRecycleView> {
         this.sourceType = sourceType;
         expanded = false;
     }
+
+    public int getId() { return id; }
 
     public String getNikName() {
         return nikName;

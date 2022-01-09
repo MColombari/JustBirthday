@@ -1,9 +1,12 @@
-package com.example.justbirthday;
+package com.example.justbirthday.localDatabaseInteraction;
 
 import android.content.Context;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.justbirthday.RecyclerViewAdapter;
+import com.example.justbirthday.SingleRowRecycleView;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -29,10 +32,10 @@ public class HomeInitializer implements Runnable{
 
         for(FriendsData friendsData : friendsDataList){
             Date bDate = new Date(friendsData.getbYear(), friendsData.getbMonth(), friendsData.getbDay());
-            singleRowRecycleViewArrayList.add(new SingleRowRecycleView(friendsData.getNikName(), friendsData.getName(), friendsData.getSurname(), bDate, friendsData.getComments(), friendsData.getType()));
+            singleRowRecycleViewArrayList.add(new SingleRowRecycleView(friendsData.getId(), friendsData.getNikName(), friendsData.getName(), friendsData.getSurname(), bDate, friendsData.getComments(), friendsData.getType()));
         }
 
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(singleRowRecycleViewArrayList);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(singleRowRecycleViewArrayList, databaseManager);
         friendsRecyclerView.setAdapter(recyclerViewAdapter);
         /* I need to use LinearLayout because doesn't exits any Manager for ConstraintLayout. */
         friendsRecyclerView.setLayoutManager(new LinearLayoutManager(applicationContext));

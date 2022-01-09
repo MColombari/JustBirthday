@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteException;
 
 import androidx.room.Room;
 
-import com.example.justbirthday.DatabaseManager;
+import com.example.justbirthday.localDatabaseInteraction.DatabaseManager;
 
 import java.util.List;
 
@@ -29,5 +29,10 @@ public class DatabaseManagerImplementation implements DatabaseManager {
     @Override
     public void insertAllFriends(List<FriendsData> inputFriends) throws SQLiteException {
         localDatabaseDao.insertFriendsData(inputFriends);
+    }
+
+    @Override
+    public void deleteFriendsById(int id) {
+        localDatabaseDao.deleteFriendsById(id);
     }
 }

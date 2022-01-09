@@ -33,8 +33,8 @@ public class FriendsData {
         this.name = name;
         this.surname = surname;
         this.bYear = bYear;
-        this.bMonth = bMonth;
-        this.bDay = bDay;
+        this.bMonth = bMonth; //    [0-11]
+        this.bDay = bDay; //        [0-...]
         this.comments = comments;
         this.type = type;
     }

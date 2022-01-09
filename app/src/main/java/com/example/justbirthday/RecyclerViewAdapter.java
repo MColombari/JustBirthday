@@ -1,5 +1,6 @@
 package com.example.justbirthday;
 
+import android.database.sqlite.SQLiteException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,15 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+import com.example.justbirthday.localDatabaseInteraction.DatabaseManager;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     ArrayList<SingleRowRecycleView> singleRowRecycleViewArrayList;
+    DatabaseManager databaseManager;
 
-    public RecyclerViewAdapter(ArrayList<SingleRowRecycleView> singleRowRecycleViewArrayList) {
+    public RecyclerViewAdapter(ArrayList<SingleRowRecycleView> singleRowRecycleViewArrayList, DatabaseManager databaseManager) {
         this.singleRowRecycleViewArrayList = singleRowRecycleViewArrayList;
+        this.databaseManager = databaseManager;
     }
 
     @NonNull
@@ -106,6 +109,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         singleRowRecycleViewArrayList.get(position).setExpanded(false);
                         notifyItemChanged(position);
                     }
+                }
+            });
+
+            deleteRVRButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = singleRowRecycleViewArrayList.get(getAdapterPosition()).getId();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                databaseManager.deleteFriendsById(id);
+                            }
+                            catch (SQLiteException e){
+                                e.printStackTrace();
+                                //Error.
+                            }
+                        }
+                    }).start();
+
+                    singleRowRecycleViewArrayList.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
                 }
             });
         }

@@ -1,16 +1,14 @@
 package com.example.justbirthday;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Window;
-import android.view.WindowManager;
+
+import com.example.justbirthday.localDatabaseInteraction.HomeInitializer;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import localDatabase.DatabaseManagerImplementation;
 
