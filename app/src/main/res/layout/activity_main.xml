@@ -27,26 +27,26 @@
         android:id="@+id/FriendsRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:layout_marginBottom="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:layout_marginTop="30dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ApplicationNameTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ApplicationNameTextView" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="400sp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"
-        android:layout_marginBottom="15sp"
-        android:backgroundTint="@color/black"
-        android:text="Add Friend"
-        android:textColor="@color/white"
+        android:id="@+id/AddFriendButton"
+        app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/black"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="Add Friend"
+        android:textColor="@color/white" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

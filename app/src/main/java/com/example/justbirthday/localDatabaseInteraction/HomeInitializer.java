@@ -32,7 +32,14 @@ public class HomeInitializer implements Runnable{
 
         for(FriendsData friendsData : friendsDataList){
             Date bDate = new Date(friendsData.getbYear(), friendsData.getbMonth(), friendsData.getbDay());
-            singleRowRecycleViewArrayList.add(new SingleRowRecycleView(friendsData.getId(), friendsData.getNikName(), friendsData.getName(), friendsData.getSurname(), bDate, friendsData.getComments(), friendsData.getType()));
+            singleRowRecycleViewArrayList.add(new SingleRowRecycleView(
+                                                    friendsData.getId(),
+                                                    friendsData.getNikName(),
+                                                    friendsData.getName(),
+                                                    friendsData.getSurname(),
+                                                    bDate,
+                                                    friendsData.getComments(),
+                                                    friendsData.getType()));
         }
 
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(singleRowRecycleViewArrayList, databaseManager);
