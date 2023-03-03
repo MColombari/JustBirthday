@@ -7,6 +7,67 @@
     android:background="@color/white"
     tools:context=".AddFriendActivity">
 
+    <EditText
+        android:id="@+id/NameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minWidth="250dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/text_name"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NicknameInput" />
+
+    <EditText
+        android:id="@+id/SurnameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minWidth="250dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/text_surname"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameInput" />
+
+    <EditText
+        android:id="@+id/CommentsInput"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_input_background"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:maxLines="4"
+        android:minWidth="250dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:singleLine="false"
+        android:text="@string/text_comments"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+
     <TextView
         android:id="@+id/ApplicationNameTextView"
         android:layout_width="wrap_content"
@@ -23,14 +84,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
+    <EditText
+        android:id="@+id/NicknameInput"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
+        android:layout_height="50dp"
+        android:layout_marginTop="130dp"
+        android:height="50dp"
+        android:background="@drawable/text_input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minWidth="250dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/text_nickname"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_input_background"
+        android:ems="10"
+        android:inputType="date"
+        android:minWidth="250dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/text_bday"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SurnameInput" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

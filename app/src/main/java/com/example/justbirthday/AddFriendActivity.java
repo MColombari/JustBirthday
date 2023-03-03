@@ -24,7 +24,7 @@ public class AddFriendActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_friend);
 
-        test = (TextView) findViewById(R.id.textView5);
+        test = (TextView) findViewById(R.id.SurnameInput);
 
         test.setOnClickListener(this);
     }
