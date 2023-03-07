@@ -4,7 +4,7 @@
     <string name="not_a_value">NaN</string>
     <string name="text_name">Name</string>
     <string name="text_surname">Surname</string>
-    <string name="text_nickname">nickname</string>
+    <string name="text_nickname">Nickname</string>
     <string name="text_bday">Birthday date</string>
     <string name="text_comments">Comments</string>
 </resources>

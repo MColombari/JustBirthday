@@ -20,8 +20,9 @@
         android:paddingRight="20dp"
         android:text="@string/text_name"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
         android:textSize="18sp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NicknameInput" />
@@ -39,8 +40,9 @@
         android:paddingRight="20dp"
         android:text="@string/text_surname"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
         android:textSize="18sp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NameInput" />
@@ -61,12 +63,13 @@
         android:singleLine="false"
         android:text="@string/text_comments"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
         android:textSize="18sp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/bDayInput" />
 
     <TextView
         android:id="@+id/ApplicationNameTextView"
@@ -98,14 +101,15 @@
         android:paddingRight="20dp"
         android:text="@string/text_nickname"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
         android:textSize="18sp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <TextView
+        android:id="@+id/bDayInput"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -114,10 +118,12 @@
         android:inputType="date"
         android:minWidth="250dp"
         android:paddingLeft="20dp"
+        android:paddingTop="12dp"
         android:paddingRight="20dp"
+        android:selectAllOnFocus="true"
         android:text="@string/text_bday"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
