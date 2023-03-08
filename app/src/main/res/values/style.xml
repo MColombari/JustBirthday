@@ -4,4 +4,25 @@
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/light_gray</item>
+        <!--selected Item color-->
+        <item name="colorControlActivated">@color/dark_gray</item>
+        <!-- arrow bordercolor(<>)-->
+        <item name="android:selectableItemBackgroundBorderless">@color/white</item>
+        <!-- Highlight item color-->
+        <item name="colorControlHighlight">@color/light_gray</item>
+        <!--Calender Background color -->
+        <item name="android:windowBackground">@color/white</item>
+        <!-- Ok Cancel Color-->
+        <item name="android:textColor">@color/black</item>
+        <!-- Week TextColor-->
+        <item name="android:textColorSecondary">@color/red</item>
+        <!-- Calender Number color arrow color (< >) -->
+        <item name="android:textColorPrimary">@color/black</item>
+        <!--day , month-->
+        <item name="android:textColorPrimaryInverse">@color/black</item>
+        <!-- year-->
+        <item name="android:textColorSecondaryInverse">@color/black</item>
+    </style>
 </resources>

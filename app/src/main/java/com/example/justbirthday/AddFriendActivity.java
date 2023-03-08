@@ -15,9 +15,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import javax.xml.namespace.NamespaceContext;
 
@@ -28,6 +33,11 @@ public class AddFriendActivity extends AppCompatActivity{
     TextView bDayTextView;
     TextView CommentsTextView;
 
+    int bDay = 8;
+    int bMonth = 4;
+    int bYear = 2000;
+
+    final Calendar myCalendar= Calendar.getInstance();
     DatePickerDialog datePickerDialog;
 
     @Override
@@ -54,72 +64,46 @@ public class AddFriendActivity extends AppCompatActivity{
         SurnameTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_surname),
                                         getApplicationContext()));
-        /*bDayTextView.setOnFocusChangeListener(
-                new TextViewOnChange(   getResources().getString(R.string.text_bday),
-                                        getApplicationContext()));*/
         CommentsTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_comments),
                                         getApplicationContext()));
 
-        datePickerDialog = new DatePickerDialog(this);
-
-        // Source to continue: "https://www.youtube.com/watch?v=qCoidM98zNk".
+        // Source:  "https://www.youtube.com/watch?v=qCoidM98zNk",
+        //          "https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext".
 
         bDayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddFriendActivity.this,
+                        R.style.MyDatePickerStyle,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                bDay = day;
+                                bMonth = monthOfYear + 1;
+                                bYear = year;
+                                bDayTextView.setText(
+                                        String.format("%02d", dayOfMonth) + "/" +
+                                        String.format("%02d", monthOfYear + 1) + "/" +
+                                        String.format("%04d", year));
+                                bDayTextView.setTextColor(getResources().getColor(R.color.black));
+
+                            }
+                        },
+                        year, month, day);
                 datePickerDialog.show();
             }
         });
 
-        /*
-        bDayTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            boolean auto_change = false;
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String text = bDayTextView.getText().toString();
-                String[] split_text = text.split("/");
-                if (!auto_change) {
-                    if (split_text.length == 1) {
-                        if (split_text[0].length() == 2) {
-                            split_text[0] = split_text[0] + '/';
-                        }
-                        auto_change = true;
-                        bDayTextView.setText(Utils.join_string(split_text));
-                    } else if (split_text.length == 2) {
-                        if ((split_text[1].length() == 2) | (Integer.parseInt(split_text[1]) > 12)) {
-                            split_text[1] = split_text[1] + '/';
-                        }
-                        auto_change = true;
-                        bDayTextView.setText(Utils.join_string(split_text));
-                    } else if (split_text.length == 3) {
-                        if (split_text[2].length() > 4) {
-                            split_text[2] = split_text[2].substring(0, 3);
-                            run_popup("Invalid Date", bDayTextView);
-                        }
-                        auto_change = true;
-                        bDayTextView.setText(Utils.join_string(split_text));
-                    } else if (split_text.length > 3) {
-                        run_popup("Invalid Date", bDayTextView);
-                    }
-                }
-                else{
-                    auto_change = false;
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        */
     }
 
     public void run_popup (String message, View v){
