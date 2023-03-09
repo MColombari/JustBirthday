@@ -1,7 +1,6 @@
 package com.example.justbirthday;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         friendsRecyclerView = (RecyclerView) findViewById(R.id.FriendsRecyclerView);
-        addFriendButton = (Button) findViewById(R.id.AddFriendButton);
+        addFriendButton = (Button) findViewById(R.id.AddFriendActivityLink);
 
         addFriendButton.setOnClickListener(new View.OnClickListener() {
             @Override

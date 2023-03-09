@@ -27,8 +27,7 @@ public class FriendsData {
     @NonNull
     public int type;
 
-    public FriendsData(int id, @NonNull String nikName, @NonNull String name, @NonNull String surname, int bYear, int bMonth, int bDay, @NonNull String comments, int type) {
-        this.id = id;
+    public FriendsData(@NonNull String nikName, @NonNull String name, @NonNull String surname, int bYear, int bMonth, int bDay, @NonNull String comments, int type) {
         this.nikName = nikName;
         this.name = name;
         this.surname = surname;

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.admin.SystemUpdatePolicy;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,11 +21,21 @@ import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.example.justbirthday.localDatabaseInteraction.AddFriends;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.xml.namespace.NamespaceContext;
+import javax.xml.validation.Validator;
+
+import localDatabase.DatabaseManagerImplementation;
+import localDatabase.tables.FriendsData;
 
 public class AddFriendActivity extends AppCompatActivity{
     TextView NicknameTextView;
@@ -32,13 +43,17 @@ public class AddFriendActivity extends AppCompatActivity{
     TextView SurnameTextView;
     TextView bDayTextView;
     TextView CommentsTextView;
+    Button GoBackButton;
+    Button AddFriendButton;
 
-    int bDay = 8;
-    int bMonth = 4;
-    int bYear = 2000;
+    int bDay;
+    int bMonth;
+    int bYear;
 
     final Calendar myCalendar= Calendar.getInstance();
     DatePickerDialog datePickerDialog;
+
+    boolean is_set[] = new boolean[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +64,34 @@ public class AddFriendActivity extends AppCompatActivity{
         getSupportActionBar().hide();
         setContentView(R.layout.activity_add_friend);
 
+        for (int i = 0; i < 5; i++){
+            is_set[i] = false;
+        }
+
         NicknameTextView = (TextView) findViewById(R.id.NicknameInput);
         NameTextView = (TextView) findViewById(R.id.NameInput);
         SurnameTextView = (TextView) findViewById(R.id.SurnameInput);
         bDayTextView = (TextView) findViewById(R.id.bDayInput);
         CommentsTextView = (TextView) findViewById(R.id.CommentsInput);
+        GoBackButton = (Button) findViewById(R.id.GetBackMainButton);
+        AddFriendButton = (Button) findViewById(R.id.AddFriendButton);
 
         NicknameTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_nickname),
-                                        getApplicationContext()));
+                                        getApplicationContext(),
+                                        is_set, 0));
         NameTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_name),
-                                        getApplicationContext()));
+                                        getApplicationContext(),
+                                        is_set, 1));
         SurnameTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_surname),
-                                        getApplicationContext()));
+                                        getApplicationContext(),
+                                        is_set, 2));
         CommentsTextView.setOnFocusChangeListener(
                 new TextViewOnChange(   getResources().getString(R.string.text_comments),
-                                        getApplicationContext()));
+                                        getApplicationContext(),
+                                        is_set, 4));
 
         // Source:  "https://www.youtube.com/watch?v=qCoidM98zNk",
         //          "https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext".
@@ -87,6 +112,7 @@ public class AddFriendActivity extends AppCompatActivity{
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
+                                is_set[3] = true;
                                 bDay = day;
                                 bMonth = monthOfYear + 1;
                                 bYear = year;
@@ -103,10 +129,56 @@ public class AddFriendActivity extends AppCompatActivity{
             }
         });
 
+        GoBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish activity.
+                finish();
+            }
+        });
+
+        AddFriendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Validate input
+                try{
+                    data_validation();
+                    // Data validated successfully.
+                    List<FriendsData> friendsDataList = new ArrayList<>();
+                    friendsDataList.add(new FriendsData(
+                            NicknameTextView.getText().toString(),
+                            NameTextView.getText().toString(),
+                            SurnameTextView.getText().toString(),
+                            bYear,
+                            bMonth - 1,
+                            bDay,
+                            CommentsTextView.getText().toString(),
+                            0
+                            ));
+                    Thread thread = new Thread(
+                            new AddFriends(
+                                    friendsDataList,
+                                    new DatabaseManagerImplementation(getApplicationContext())));
+                    thread.start();
+                } catch (Exception e){
+                    // Validation failed.
+                    show_popup(e.getMessage(), v);
+                }
+            }
+        });
 
     }
 
-    public void run_popup (String message, View v){
+    private void data_validation() throws Exception {
+        // For now i just check if
+        for (int i = 0; i < 5; i++) {
+            if (!is_set[i]) {
+                throw new Exception("Input data not valid");
+            }
+        }
+    }
+
+    private void show_popup(String message, View v){
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = layoutInflater.inflate(R.layout.generic_popup, null);
 
@@ -122,8 +194,11 @@ public class AddFriendActivity extends AppCompatActivity{
         popupWindow.update();
         // "v" is used as a parent view to get the View.getWindowToken() token from.
         popupWindow.showAtLocation(v, Gravity.TOP, 0, 300);
+        popupWindow.update();
 
-        Button button = (Button) findViewById(R.id.popup_button);
-        button.setText(message);
+        TextView popup_text = (TextView) popupView.findViewById(R.id.popup_message);
+        if (popup_text != null) {
+            popup_text.setText(message);
+        }
     }
 }

@@ -7,25 +7,28 @@ import android.widget.TextView;
 
 public class TextViewOnChange implements View.OnFocusChangeListener{
     String default_text;
-    Boolean is_default = true;
     Context app_context;
+    boolean[] is_set;
+    int index;
 
 
-    TextViewOnChange(String in, Context context){
+    TextViewOnChange(String in, Context context, boolean[] is_set, int index){
         default_text = in;
         app_context = context;
+        this.is_set = is_set;
+        this.index = index;
     }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         TextView tv = (TextView) v;
-        if (is_default) {
-            is_default = false;
+        if (!is_set[index]) {
+            is_set[index] = true;
             tv.setTextColor(app_context.getResources().getColor(R.color.black));
         }
         if (!hasFocus){
             if(tv.getText().length() == 0) {
-                is_default = true;
+                is_set[index] = false;
                 tv.setText(default_text);
                 tv.setTextColor(app_context.getResources().getColor(R.color.light_gray));
             }

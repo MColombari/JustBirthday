@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     app:barrierMargin="@dimen/cardview_default_elevation">
 
-    <Button
-        android:id="@+id/popup_button"
+    <TextView
+        android:id="@+id/popup_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/popup_background"
         android:paddingLeft="80dp"
         android:paddingTop="10dp"
         android:paddingRight="80dp"
@@ -18,8 +19,6 @@
         android:text="@string/not_a_value"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:backgroundTint="@color/warning"
-        app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
