@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.admin.SystemUpdatePolicy;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -132,8 +133,7 @@ public class AddFriendActivity extends AppCompatActivity{
         GoBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish activity.
-                finish();
+                finish_activity();
             }
         });
 
@@ -160,6 +160,13 @@ public class AddFriendActivity extends AppCompatActivity{
                                     friendsDataList,
                                     new DatabaseManagerImplementation(getApplicationContext())));
                     thread.start();
+
+                    AddFriendActivity.super.onRestart();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish_activity();
+
                 } catch (Exception e){
                     // Validation failed.
                     show_popup(e.getMessage(), v);
@@ -167,6 +174,12 @@ public class AddFriendActivity extends AppCompatActivity{
             }
         });
 
+    }
+
+    public void finish_activity(){
+        // Finish activity.
+        finish();
+        overridePendingTransition(R.anim.no_animation, R.anim.slide_out_bottom);
     }
 
     private void data_validation() throws Exception {
